@@ -28,6 +28,20 @@ def crack_hash(target, size=4):
     pass
 
 
-print(crack_hash(credentials), 4)
 
+
+def test():
+    pw = get_data(credentials, 1).splitlines()
+    crack = ''
+    pw_size = 4
+    while pw_size > 0:
+        for i in itertools.product(letters, repeat=4):
+            crack = ''.join(i).encode('utf8')
+            md5 = hashlib.md5(crack).hexdigest()
+            if md5 == pw[pw_size - 1]:
+                print(crack)
+                pw_size -= 1
+            print(crack.decode('utf8'), md5)
+
+test()
 
