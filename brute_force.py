@@ -2,18 +2,18 @@ import itertools
 import string
 import hashlib
 import time
-from arquivo import *
+from data import *
 
-letras = string.printable
+letters = string.printable
 
 
-def ataque(alvo, tamanho=4):
-    senhas = retornar_dados(alvo, 1)
-    for i in itertools.product(letras, repeat=tamanho):
-        senha = ''.join(i).encode('utf8')
-        if hashlib.md5(senha).hexdigest() == senhas:
-            return senha
-    return ataque(alvo, tamanho + 1)
+def crack_hash(target, size=4):
+    passwords = get_data(target, 1).splitlines()
+    for i in itertools.product(letters, repeat=size):
+        pw = ''.join(i).encode('utf8')
+        if hashlib.md5(pw).hexdigest() == passwords:
+            return pw
+    return crack_hash(target, size + 1)
 
 
 
