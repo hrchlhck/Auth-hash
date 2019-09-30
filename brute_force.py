@@ -24,7 +24,7 @@ def crack(target, chars, size=4):
                 time_elapsed.append(time.time() - t0)
                 break
 
-    txt_format = ''
+    txt_format = 'Passwords found >> '
     for pw in passwords:
         txt_format += pw + ', '
     print(txt_format)
