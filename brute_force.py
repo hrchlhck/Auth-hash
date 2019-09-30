@@ -4,44 +4,26 @@ import hashlib
 import time
 from data import *
 
-letters = string.printable
+letters = string.digits
 credentials = 'credentials.txt'
 
 
-def crack_hash(target, size=4):
-    """
-    :param target: Path to data file
-    :param size: size of the password
-    :return: itself
-    """
-    passwords = get_data(target, 1).splitlines()
-    cracked = ''
-    if size <= 0:
-        return cracked
-    else:
-        for i in itertools.product(letters, repeat=size):
-            cracked = ''.join(i).encode('utf8')
-            if hashlib.md5(cracked).hexdigest() == passwords:
-                print(cracked)
-                return cracked
-        return crack_hash(target, size - 1)
-    pass
-
-
-
-
-def test():
-    pw = get_data(credentials, 1).splitlines()
+def crack(target: str, size: int = 4) -> None:
+    time_elapsed = 'Time elapsed: '
+    pw = get_data(target, 1).splitlines()
     crack = ''
-    pw_size = 4
-    while pw_size > 0:
-        for i in itertools.product(letters, repeat=4):
+    while size > 0:
+        time_init = time.time()
+        for i in itertools.product(letters, repeat=size):
             crack = ''.join(i).encode('utf8')
             md5 = hashlib.md5(crack).hexdigest()
-            if md5 == pw[pw_size - 1]:
+            if md5 == pw[size - 1]: # problem
                 print(crack)
-                pw_size -= 1
+                time_elapsed += str(time.time() - time_init) + '\n'
+                size -= 1
+                break
             print(crack.decode('utf8'), md5)
 
-test()
+
+crack('credentials.txt', 4)
 
