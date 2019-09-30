@@ -16,20 +16,20 @@ def get_credentials(credential_file):
         return line_lst
 
 
-def get_data(credential_file, type=0):
+def get_data(credential_file, _type=0):
     """
     :param credential_file: String that indicates the path of the file containing data
-    :param type: 0 for username, 1 for password
+    :param _type: 0 for username, 1 for password
     :return: string
     """
     pw = get_credentials(credential_file)
     passwords = ''
-    if type == 0:
+    if _type == 0:
         for i in range(len(pw)):
-            passwords += pw[i][type] + '\n'
-    elif type == 1:
+            passwords += pw[i][_type] + '\n'
+    elif _type == 1:
         for i in range(len(pw)):
-            passwords += pw[i][type] + '\n'
+            passwords += pw[i][_type] + '\n'
     else:
         raise IndexError('Max length is 2')
     return passwords
