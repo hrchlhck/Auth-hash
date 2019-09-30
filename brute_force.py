@@ -19,5 +19,6 @@ def crack(target, chars,size=4):
                 passwords.append(cracked.join(i))
                 print("Password found >> " + '\'' + cracked.join(i) + '\'')
                 break
-
+    print(passwords)
+    
 crack(credentials, characters)
