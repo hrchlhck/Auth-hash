@@ -2,7 +2,7 @@
 ## For educational purposes
 Quick research about message digest 5 and authentication
 
-1. Develop a software which implements an application that have two funcionalities: register and authenticate a user. <br>
+1. Develop a software which implements a application that have two funcionalities: register and authenticate a user. <br>
 A user have the following attributes: name (four string character) and password (four string character). The registering should store data in a txt file. <br>
 The application need to use MD5 algorithm to realize hash function for the password.
 
