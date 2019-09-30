@@ -1,4 +1,5 @@
 # Auth-hash
+## For educational purposes
 Quick research about message digest 5 and authentication
 
 1. Develop a software which implements an application that have two funcionalities: register and authenticate a user. <br>
