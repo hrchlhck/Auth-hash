@@ -1,3 +1,5 @@
+import os
+
 class DataReader:
     """
     Author: Pedro Horchulhack
@@ -19,7 +21,10 @@ class DataReader:
     """
     def __init__(self, credential_file):
         self.credential_file = credential_file
-
+        if not os.path.isfile(self.credential_file): # Verify if file exists. If don't, creates a new file
+            open(self.credential_file, 'w+')
+        else:
+            pass
 
     def get_data(self):
         try:
