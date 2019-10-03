@@ -33,6 +33,3 @@ def get_data(credential_file, _type=0):
     else:
         raise IndexError('Max length is 2')
     return passwords
-
-
-# print(retornar_dados('credentials.txt', 2))

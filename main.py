@@ -1,58 +1,53 @@
 import hashlib
+import sys
 from data import *
 
 
 def main():
     credential_file = 'credentials.txt'
-    loop = True
+    credential_list = get_credentials(credential_file)
+    reg_loop = True
     auth_loop = True
+    print('Welcome! Choose an option: ')
 
     while True:
-        print('Welcome! Choose an option: ')
         print('(1) >> Sign up')
-        print('(2) >> Sign in')
+        print('(2) >> Log in')
         print('(3) >> Exit')
         option = int(input('>> '))
 
         if option == 1:
-            while loop:
-                m = hashlib.md5()
-                credential_list = get_credentials(credential_file)
+            while reg_loop:
                 existent_user = False
                 username = str(input('Type a username: '))
                 password = str(input('Type a password: '))
 
-                assert len(username) <= 4, 'Max length of characters is 4'
-                assert len(password) <= 4, 'Max length of characters is 4'
-
-                m.update(password.encode('utf8'))
-                md5_pw = m.hexdigest()
-
-                for user in range(len(credential_list)):
-                    name = credential_list[user][0]
-                    if name.lower() == username.lower():
-                        existent_user = True
-
-                if existent_user:
-                    print('This username already exists, please try again')
+                if len(username) > 4 or len(password) > 4:
+                    raise ValueError('Username and passord must be up to 4 characters only')
                 else:
-                    with open(credential_file, 'a') as arq:
-                        arq.write(username + ", " + md5_pw + '\n')
-                        arq.close()
-                        pass
-                    print('Successfully registered!')
-                    loop = False
-                    break
+                    md5_pw = hashlib.md5(password.encode('utf8')).hexdigest()
+
+                    for user in range(len(credential_list)):
+                        name = credential_list[user][0]
+                        if name.lower() == username.lower():
+                            existent_user = True
+
+                    if existent_user:
+                        print('This username already exists, please try again')
+                    else:
+                        with open(credential_file, 'a') as arq:
+                            arq.write(username + ", " + md5_pw + '\n')
+                            arq.close()
+                            pass
+                        print('Successfully registered!')
+                        loop = False
         elif option == 2:
             while auth_loop:
-                m = hashlib.md5()
                 valid_credential = False
-                credential_list = get_credentials(credential_file)
                 username = str(input('Type your username: '))
                 password = str(input('Type your password: '))
 
-                m.update(password.encode('utf8'))
-                md5_pw = m.hexdigest()
+                md5_pw = hashlib.md5(password.encode('utf8')).hexdigest()
 
                 for user in range(len(credential_list)):
                     name = credential_list[user][0]
@@ -62,13 +57,12 @@ def main():
 
                 if valid_credential:
                     print('Successfully authenticated!')
-                    auth_loop = False
-                    break
+                    sys.exit()
                 else:
                     print('Invalid username or password')
         elif option == 3:
             print('Good bye!')
-            exit()
+            sys.exit()
         else:
             print('This option does not exist. Please, try again')
 
