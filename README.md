@@ -1,13 +1,14 @@
-# Auth-hash
-## For educational purposes
+# Auth hash 
+#### For educational purposes
+---
 Quick research about message digest 5 and authentication
+---
 
-1. Develop a software which implements a application that have two funcionalities: register and authenticate a user. <br>
-A user have the following attributes: name (four string character) and password (four string character). The registering should store data in a txt file. <br>
-The application need to use MD5 algorithm to realize hash function for the password.
+- [x] Develop a software which implements a application that have two funcionalities: register and authenticate a user.
+A user have the following attributes: name (four string character) and password (four string character). The registering should store data in a txt file. The application need to use MD5 algorithm to realize hash function for the password.
 
-2. Search a code/algorithm of brute force for MD5 and process the file that contains the passwords early stored.
-Compute the elapsed time for crack the passwords of four users. 
+- [x] Search a code/algorithm of brute force for MD5 and process the file that contains the passwords early stored.
+Compute the elapsed time for crack the passwords of four users. ~~I actually made one.~~
 
-3. Implement a solution to reduce the sucess of a brute force attack in the program early developed.
+- [ ] Implement a solution to reduce the sucess of a brute force attack in the program early developed.
 

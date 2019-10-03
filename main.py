@@ -1,5 +1,6 @@
 import hashlib
 import sys
+import os
 from data import *
 
 
@@ -19,11 +20,11 @@ def main():
         if option == 1:
             while reg_loop:
                 existent_user = False
-                username = str(input('Type a username: '))
-                password = str(input('Type a password: '))
+                username = str(input('>> Type a username: '))
+                password = str(input('>> Type a password: '))
 
                 if len(username) > 4 or len(password) > 4:
-                    raise ValueError('Username and passord must be up to 4 characters only')
+                    raise ValueError('Username and password must be up to 4 characters only')
                 else:
                     md5_pw = hashlib.md5(password.encode('utf8')).hexdigest()
 
@@ -44,8 +45,8 @@ def main():
         elif option == 2:
             while auth_loop:
                 valid_credential = False
-                username = str(input('Type your username: '))
-                password = str(input('Type your password: '))
+                username = str(input('>> Type your username: '))
+                password = str(input('>> Type your password: '))
 
                 md5_pw = hashlib.md5(password.encode('utf8')).hexdigest()
 
