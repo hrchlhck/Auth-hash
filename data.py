@@ -56,10 +56,11 @@ class DataReader:
             with open(self.credential_file, 'a') as file:
                 data = ''
                 for _data in range(len(args)):
+                    str_data = str(args[_data])
                     if _data < len(args) - 1:
-                        data += str(args[_data]) + ', '
+                        data += str_data + ', '
                     elif _data == len(args) - 1:
-                        data += str(args[_data])
+                        data += str_data
                 file.write(data + '\n')
                 file.close()
         except FileNotFoundError:
