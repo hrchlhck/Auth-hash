@@ -40,7 +40,7 @@ def main():
                             arq.close()
                             pass
                         print('Successfully registered!')
-                        loop = False
+                        reg_loop = False
         elif option == 2:
             while auth_loop:
                 valid_credential = False
