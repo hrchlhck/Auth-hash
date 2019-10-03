@@ -5,7 +5,7 @@ class DataReader:
     
     Methods:
         get_data -> string
-            Retrives all data of each type i. e. all usernames or all passwords.
+            Retrives all data in the file
 
         get_line_count -> integer
             Retrives the line count in the file
