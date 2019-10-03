@@ -1,8 +1,5 @@
 # Auth hash 
 ---
-<center>For educational purposes</center>
-
----
 ### Quick research about message digest 5 and authentication
 
 
