@@ -35,10 +35,7 @@ def main():
                     if existent_user:
                         print('This username already exists, please try again')
                     else:
-                        with open(data.credential_file, 'a') as arq:
-                            arq.write(username + ", " + md5_pw + '\n')
-                            arq.close()
-                            pass
+                        data.write_data(username, md5_pw)
                         print('Successfully registered!')
                         reg_loop = False
         elif option == 2:
