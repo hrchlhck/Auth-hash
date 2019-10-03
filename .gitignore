@@ -1,2 +1,3 @@
-# Ignore this folder
+# Ignore those folders
 __pycache__/
+.idea/
