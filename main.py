@@ -1,16 +1,15 @@
 import hashlib
 import sys
 import os
-from data import *
+from data import DataReader
 
 
 def main():
-    credential_file = 'credentials.txt'
-    credential_list = get_credentials(credential_file)
+    data = DataReader('credentials.txt')
+    credential_list = data.get_data()
     reg_loop = True
     auth_loop = True
     print('Welcome! Choose an option: ')
-
     while True:
         print('(1) >> Sign up')
         print('(2) >> Log in')
@@ -36,7 +35,7 @@ def main():
                     if existent_user:
                         print('This username already exists, please try again')
                     else:
-                        with open(credential_file, 'a') as arq:
+                        with open(data.credential_file, 'a') as arq:
                             arq.write(username + ", " + md5_pw + '\n')
                             arq.close()
                             pass
