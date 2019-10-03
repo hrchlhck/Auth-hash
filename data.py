@@ -1,5 +1,9 @@
 class DataReader:
     """
+    Author: Pedro Horchulhack
+
+    This class provides simple file writing and reading methods.
+    
     Attributes:
         credential_file -- String containing the path plus filename which contains user + password data pattern
     
@@ -9,6 +13,9 @@ class DataReader:
 
         get_line_count -> integer
             Retrives the line count in the file
+
+        write_data -> None
+            Writes data into a text file separated by commas
     """
     def __init__(self, credential_file):
         self.credential_file = credential_file
@@ -39,6 +46,21 @@ class DataReader:
             with open(self.credential_file, 'r') as file:            
                 for index, line in enumerate(file):
                     pass
+                file.close()
             return index + 1
+        except FileNotFoundError:
+            print('Unable to open file. It may not exist or it\'s corrupted.')
+
+    def write_data(self, *args):
+        try:
+            with open(self.credential_file, 'a') as file:
+                data = ''
+                for _data in range(len(args)):
+                    if _data < len(args) - 1:
+                        data += str(args[_data]) + ', '
+                    elif _data == len(args) - 1:
+                        data += str(args[_data])
+                file.write(data + '\n')
+                file.close()
         except FileNotFoundError:
             print('Unable to open file. It may not exist or it\'s corrupted.')
