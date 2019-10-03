@@ -5,7 +5,7 @@ import time
 from data import DataReader
 
 characters = string.digits + string.ascii_lowercase
-credentials = 'credentials.txt'
+credentials = 'files/credentials.txt'
 
 
 def crack(target, chars, size=4):

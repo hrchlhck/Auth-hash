@@ -1,11 +1,11 @@
-from hashlib import md5
-from sys import exit
-from os import urandom
+import hashlib
+import sys
+import os
 from data import DataReader
-from base64 import b64encode
+
 
 def main():
-    data = DataReader('credentials.txt')
+    data = DataReader('files/credentials.txt')
     credential_list = data.get_data()
     reg_loop = True
     auth_loop = True
@@ -25,10 +25,8 @@ def main():
                 if len(username) > 4 or len(password) > 4:
                     raise ValueError('Username and password must be up to 4 characters only')
                 else:
-                    salt = urandom(4)
-                    salt_decoded = b64encode(salt).decode('utf8')
-                    md5_pw = md5(password.encode('utf8') + salt).hexdigest()
-        
+                    md5_pw = hashlib.md5(password.encode('utf8')).hexdigest()
+
                     for user in range(len(credential_list)):
                         name = credential_list[user][0]
                         if name.lower() == username.lower():
@@ -37,7 +35,7 @@ def main():
                     if existent_user:
                         print('This username already exists, please try again')
                     else:
-                        data.write_data(username, md5_pw, salt_decoded)
+                        data.write_data(username, md5_pw)
                         print('Successfully registered!')
                         reg_loop = False
         elif option == 2:
@@ -46,15 +44,12 @@ def main():
                 username = str(input('>> Type your username: '))
                 password = str(input('>> Type your password: '))
 
-                md5_pw = md5(password.encode('utf8')).hexdigest()
+                md5_pw = hashlib.md5(password.encode('utf8')).hexdigest()
 
                 for user in range(len(credential_list)):
                     name = credential_list[user][0]
                     pw = credential_list[user][1]
-                    salt = credential_list[user][2]
-                    md5_pw_salt = md5(password.encode('utf8') + salt.encode('utf8')).hexdigest()
-                    
-                    if name.lower() == username.lower() and md5_pw_salt == pw:
+                    if name.lower() == username.lower() and md5_pw == pw:
                         valid_credential = True
 
                 if valid_credential:
