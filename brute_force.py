@@ -34,7 +34,10 @@ def crack(target, chars, size=4):
         time_each_pw += str(_time) + ' seconds' + ', '
     print(time_each_pw)
 
+def main():
+    init_time = time.time()
+    crack(credentials, characters)
+    print("Total time elapsed >> " + str(time.time() - init_time))
 
-init_time = time.time()
-crack(credentials, characters)
-print("Total time elapsed >> " + str(time.time() - init_time))
+if __name__ == '__main__':
+    main()
