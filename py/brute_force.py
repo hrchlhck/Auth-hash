@@ -1,11 +1,7 @@
+from py.data import DataReader
 import itertools
-import string
 import hashlib
 import time
-from data import DataReader
-
-characters = string.digits + string.ascii_lowercase
-credentials = 'files/credentials.txt'
 
 
 def crack(target, chars, size=4):
@@ -13,7 +9,9 @@ def crack(target, chars, size=4):
     cracked = ''
     passwords = []
     time_elapsed = []
-    for j in range(len(data)):
+    init_time = time.time()
+    
+    for j in range(len(size)):
         t0 = time.time()
         for i in itertools.product(chars, repeat=size):
             print(cracked.join(i), hashlib.md5(cracked.join(i).encode('utf8')).hexdigest())
@@ -27,17 +25,11 @@ def crack(target, chars, size=4):
     txt_format = 'Passwords found >> '
     for pw in passwords:
         txt_format += pw + ', '
-    print(txt_format)
 
     time_each_pw = ''
     for _time in time_elapsed:
         time_each_pw += str(_time) + ' seconds' + ', '
+
+    print(txt_format)
     print(time_each_pw)
-
-def main():
-    init_time = time.time()
-    crack(credentials, characters)
     print("Total time elapsed >> " + str(time.time() - init_time))
-
-if __name__ == '__main__':
-    main()
