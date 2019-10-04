@@ -1,5 +1,6 @@
 import os
 
+
 class DataReader:
     """
     Author: Pedro Horchulhack
@@ -19,11 +20,10 @@ class DataReader:
         write_data -> None
             Writes data into a text file separated by commas
     """
-    PATH = os.path.abspath(os.curdir)
     def __init__(self, credential_file):
         self.credential_file = credential_file
-        if not os.path.isfile(self.credential_file): # Verify if file exists. If don't, creates a new file
-            open(self.PATH + self.credential_file, 'w+')
+        if not os.path.isfile(self.credential_file):
+            open(self.credential_file, 'w+') 
         else:
             pass
 

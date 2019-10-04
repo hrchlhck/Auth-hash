@@ -1,12 +1,10 @@
-import hashlib
-import sys
-import os
 from py.data import DataReader
+from hashlib import md5
+import sys
 
 
 def main():
     data = DataReader('files/credentials.txt')
-    credential_list = data.get_data()
     reg_loop = True
     auth_loop = True
     print('Welcome! Choose an option: ')
@@ -16,6 +14,7 @@ def main():
         print('(3) >> Exit')
         option = int(input('>> '))
 
+        credential_list = data.get_data()
         if option == 1:
             while reg_loop:
                 existent_user = False
@@ -25,7 +24,7 @@ def main():
                 if len(username) > 4 or len(password) > 4:
                     raise ValueError('Username and password must be up to 4 characters only')
                 else:
-                    md5_pw = hashlib.md5(password.encode('utf8')).hexdigest()
+                    md5_pw = md5(password.encode('utf8')).hexdigest()
 
                     for user in range(len(credential_list)):
                         name = credential_list[user][0]
@@ -44,7 +43,7 @@ def main():
                 username = str(input('>> Type your username: '))
                 password = str(input('>> Type your password: '))
 
-                md5_pw = hashlib.md5(password.encode('utf8')).hexdigest()
+                md5_pw = md5(password.encode('utf8')).hexdigest()
 
                 for user in range(len(credential_list)):
                     name = credential_list[user][0]
@@ -59,7 +58,7 @@ def main():
                     print('Invalid username or password')
         elif option == 3:
             print('Good bye!')
-            sys.exit()
+            break
         else:
             print('This option does not exist. Please, try again')
 
