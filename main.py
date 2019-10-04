@@ -1,6 +1,6 @@
-from hashlib import md5
 from py.data import DataReader
-from sys import exit
+from hashlib import md5
+import sys
 
 def main():
     data = DataReader('files/credentials.txt')
