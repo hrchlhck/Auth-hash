@@ -19,10 +19,11 @@ class DataReader:
         write_data -> None
             Writes data into a text file separated by commas
     """
+
     def __init__(self, credential_file):
         self.credential_file = credential_file
-        if not os.path.isfile(self.credential_file): # Verify if file exists. If don't, creates a new file
-            open(self.credential_file, 'w+')
+        if not os.path.isfile(self.credential_file):
+            open(self.credential_file, 'w+') 
         else:
             pass
 
