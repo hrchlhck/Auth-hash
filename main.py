@@ -1,7 +1,7 @@
 import hashlib
 import sys
 import os
-from data import DataReader
+from py.data import DataReader
 
 
 def main():

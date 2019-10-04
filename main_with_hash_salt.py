@@ -5,7 +5,7 @@ from data import DataReader
 from base64 import b64encode
 
 def main():
-    data = DataReader('files/credentials.txt')
+    data = DataReader('files/credentials_salt.txt')
     credential_list = data.get_data()
     reg_loop = True
     auth_loop = True
@@ -27,7 +27,7 @@ def main():
                 else:
                     salt = urandom(4)
                     salt_decoded = b64encode(salt).decode('utf8')
-                    md5_pw = md5(password.encode('utf8') + salt).hexdigest()
+                    md5_pw = md5(password.encode('utf8') + salt_decoded).hexdigest()
         
                     for user in range(len(credential_list)):
                         name = credential_list[user][0]

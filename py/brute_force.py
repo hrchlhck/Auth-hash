@@ -13,26 +13,22 @@ def crack(target, chars, size=4):
     cracked = ''
     passwords = []
     time_elapsed = []
-    for j in range(len(data)):
+    for j in range(1):
         t0 = time.time()
         for i in itertools.product(chars, repeat=size):
-            print(cracked.join(i), hashlib.md5(cracked.join(i).encode('utf8')).hexdigest())
-
-            if hashlib.md5(cracked.join(i).encode('utf8')).hexdigest() == data[j][1]:
+            md5_crack = hashlib.md5(cracked.join(i).encode('utf8')).hexdigest()
+            print(cracked.join(i), md5_crack)
+            if md5_crack == data[j][1]:
                 passwords.append(cracked.join(i))
                 print("Password found >> " + '\'' + cracked.join(i) + '\'')
                 time_elapsed.append(time.time() - t0)
                 break
 
-    txt_format = 'Passwords found >> '
-    for pw in passwords:
-        txt_format += pw + ', '
-    print(txt_format)
+    txt = 'Passwords found: '
+    for _data in zip(time_elapsed, passwords):
+        txt += str(_data) + ', '
 
-    time_each_pw = ''
-    for _time in time_elapsed:
-        time_each_pw += str(_time) + ' seconds' + ', '
-    print(time_each_pw)
+        
 
 def main():
     init_time = time.time()
