@@ -4,7 +4,6 @@ import sys
 
 def main():
     data = DataReader('files/credentials.txt')
-    credential_list = data.get_data()
     reg_loop = True
     auth_loop = True
     print('Welcome! Choose an option: ')
@@ -14,6 +13,7 @@ def main():
         print('(3) >> Exit')
         option = int(input('>> '))
 
+        credential_list = data.get_data()
         if option == 1:
             while reg_loop:
                 existent_user = False
