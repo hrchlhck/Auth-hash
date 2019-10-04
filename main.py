@@ -1,6 +1,10 @@
+from py.brute_force import crack
 from py.data import DataReader
 from hashlib import md5
+import string
 import sys
+
+chars = string.digits + string.ascii_lowercase
 
 def main():
     data = DataReader('files/credentials.txt')
@@ -64,3 +68,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+    data = 'files/credentials.txt'
+    crack(data, chars)
