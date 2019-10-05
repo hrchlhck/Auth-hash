@@ -9,5 +9,5 @@ A user have the following attributes: name (four string character) and password 
 Compute the elapsed time for crack the passwords of four users. ~~I actually made one.~~
 
 - [x] Implement a solution to reduce the sucess of a brute force attack in the program early developed.
-    - Solution: Adding salt into hash
+    - Solution: Adding salt into hashed password
 
