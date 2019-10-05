@@ -48,7 +48,7 @@ class BruteForce:
 
         txt_format = 'Passwords found: '
         for y in zip(passwords, time_elapsed):
-            txt_format += str('\n   ' + 'Username: ' + y[0] + ', time elapsed: ' + str(y[1]))
+            txt_format += str('\n   ' + 'Password: ' + y[0] + ', time elapsed: ' + str(y[1]))
         return txt_format
 
 
