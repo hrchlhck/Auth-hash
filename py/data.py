@@ -27,7 +27,7 @@ class DataReader:
         else:
             pass
 
-    def get_data(self):
+    def get_data(self, separator=', '):
         try:
             with open(self.credential_file, 'r') as file:
                 lines = ''
@@ -41,11 +41,11 @@ class DataReader:
 
                 # Splits the list into smaller lists, where the data is username and password
                 for i in str_lines:
-                    line_lst.append(i.split(', '))
+                    line_lst.append(i.split(separator))
                 file.close()
                 return line_lst
         except FileNotFoundError:
-            print('Unable to open file. It may not exist or it\'s corrupted.')
+            print(r"Unable to open file. It may not exist or it's corrupted.")
 
     def get_line_count(self):
         try:
@@ -55,7 +55,7 @@ class DataReader:
                 file.close()
             return index + 1
         except FileNotFoundError:
-            print('Unable to open file. It may not exist or it\'s corrupted.')
+            print(r"Unable to open file. It may not exist or it's corrupted.")
 
     def write_data(self, *args):
         try:
@@ -70,4 +70,4 @@ class DataReader:
                 file.write(data + '\n')
                 file.close()
         except FileNotFoundError:
-            print('Unable to open file. It may not exist or it\'s corrupted.')
+            print(r"Unable to open file. It may not exist or it's corrupted.")
