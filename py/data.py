@@ -42,7 +42,6 @@ class DataReader:
                 # Splits the list into smaller lists, where the data is username and password
                 for i in str_lines:
                     line_lst.append(i.split(', '))
-                file.close()
                 return line_lst
         except FileNotFoundError:
             print('Unable to open file. It may not exist or it\'s corrupted.')
@@ -52,7 +51,6 @@ class DataReader:
             with open(self.credential_file, 'r') as file:            
                 for index, line in enumerate(file):
                     pass
-                file.close()
             return index + 1
         except FileNotFoundError:
             print('Unable to open file. It may not exist or it\'s corrupted.')
@@ -68,6 +66,5 @@ class DataReader:
                     elif _data == len(args) - 1:
                         data += str_data
                 file.write(data + '\n')
-                file.close()
         except FileNotFoundError:
             print('Unable to open file. It may not exist or it\'s corrupted.')

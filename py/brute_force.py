@@ -1,4 +1,5 @@
 from py.data import DataReader
+from .decorators import timer
 from itertools import product
 from hashlib import md5
 from time import time
@@ -29,37 +30,30 @@ class BruteForce:
         self.chars = chars
         self.size = size
 
+    @timer
     def crack(self):
         data = DataReader(self.target).get_data()
-        cracked = ''
         passwords = []
-        time_elapsed = []
-        for j in range(self.size):
-            t0 = time()
-            for i in product(self.chars, repeat=self.size):
-                md5_attempt = md5(cracked.join(i).encode('utf8')).hexdigest()
-                print(cracked.join(i), md5_attempt)
+        try:
+            for j in range(self.size):
+                t0 = time()
+                for i in product(self.chars, repeat=self.size):
+                    md5_attempt = md5(''.join(i).encode('utf8')).hexdigest()
+                    print(''.join(i), md5_attempt)
 
-                if md5_attempt == data[j][1]:
-                    passwords.append(cracked.join(i))
-                    time_elapsed.append(time() - t0)
-                    DataReader(self.path + '\\files\\cracked_passwords.txt').write_data(data[j][0], cracked.join(i))
-                    break
-
-        txt_format = 'Passwords found: '
-        for y in zip(passwords, time_elapsed):
-            txt_format += str('\n   ' + 'Password: ' + y[0] + ', time elapsed: ' + str(y[1]))
-        return txt_format
-
+                    if md5_attempt == data[j][1]:
+                        passwords.append(''.join(i))
+                        DataReader(self.path + '\\files\\cracked_passwords.txt').write_data(data[j][0], ''.join(i))
+                        break
+        except KeyboardInterrupt:
+            print("Stopping brute force")
 
 def main():
-    path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    path = BruteForce.path
     characters = string.digits + string.ascii_lowercase
     credentials = path + '\\files\\credentials.txt'
 
-    init_time = time()
-    print(BruteForce(credentials, characters, size=4).crack())
-    print("Total time elapsed >> " + str(time() - init_time))
+    BruteForce(credentials, characters, size=4).crack()
 
 
 if __name__ == '__main__':
